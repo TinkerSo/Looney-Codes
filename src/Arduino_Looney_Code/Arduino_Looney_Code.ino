@@ -31,12 +31,12 @@ void loop() {
   }
   Serial.println(val);
   if(val == '1'){
-    motorControl(50, L_motor);
-    motorControl(-50, R_motor);
+    motorControl(40, L_motor);
+    motorControl(-40, R_motor);
   }
   else if(val == '2'){
-    motorControl(-50, L_motor);
-    motorControl(50, R_motor);
+    motorControl(-40, L_motor);
+    motorControl(40, R_motor);
   }
   else{
     motorStop(L_motor);

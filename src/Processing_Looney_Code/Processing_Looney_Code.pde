@@ -14,29 +14,34 @@ float difPosX;
 float difPosYIndex;
 float difPosYPinky;
 int flag = 1;
+int handleColor = 20;
+
 
 Serial myPort;
 LeapMotion leap;
 
 void setup() {
-  size(800, 500, OPENGL);
+  size(1920, 800, OPENGL);
   leap = new LeapMotion(this);
   textAlign(CENTER);
   myPort = new Serial(this, "COM4", 9600);
   myPort.bufferUntil('n');
 }
 
-
 void draw() {
   background(100);
+  rectMode(CENTER);
+  fill(handleColor);
+  rect(960, 400, 1920, 100);
 
   // FPS
   int fps = leap.getFrameRate();
   fill(#00E310);
   text(fps + " fps", 20, 20);
   
+  
   char send=0;
-
+  
   for (Hand hand : leap.getHands ()) {
     
     PVector middleTip = hand.getMiddleFinger().getRawPositionOfJointTip();
@@ -45,15 +50,17 @@ void draw() {
     PVector handCenter = hand.getPosition();
     float handGrab = hand.getGrabStrength();
     
-    if(handGrab>=0.3 && flag==1){
+    if(handGrab>=0.9 && flag==1){
       /*initPosY=handYPosition(middleTip);
       initPosX=handXPosition(middleTip);
       initPosYIndex=handYPosition(indexTip);
       initPosYPinky=handYPosition(pinkyTip);*/
-      initPosY = handYPosition(handCenter);
+      initPosY = handYPosition(handCenter);;
+      handleColor = 255;
       flag = 0;
     }
-    else if(handGrab<0.3 && flag==0){
+    else if(handGrab<0.9 && flag==0){
+      handleColor = 20;
       flag = 1;
     }
     
@@ -61,7 +68,7 @@ void draw() {
     handleFinger(indexTip,"indx");
     handleFinger(pinkyTip,"pinky");
     
-    if (handGrab >= 0.3) {
+    if (handGrab >= 0.9) {
       difPosY = initPosY - handYPosition(handCenter);
       /*difPosY=initPosY-handYPosition(middleTip);
       difPosX=initPosX-handXPosition(middleTip);
@@ -86,8 +93,12 @@ void draw() {
       }
       
   }
+   rectMode(CENTER);
+   fill(handleColor);
+   rect(960, 400, 1920, 100);
    myPort.write(send);
    hand.draw();
+  
   }
 }
 
