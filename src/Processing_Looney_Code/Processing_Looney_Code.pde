@@ -16,6 +16,17 @@ float difPosYPinky;
 int flag = 1;
 int handleColor = 20;
 
+int STOP = 200;
+int FORWARD = 201;
+int BACKWARD = 202;
+int count = 0;
+
+int send= 0;
+int command = STOP;
+int oldCommand = command;
+int flagCommand = 0;
+
+float threshold = 15;
 
 Serial myPort;
 LeapMotion leap;
@@ -33,15 +44,16 @@ void draw() {
   rectMode(CENTER);
   fill(handleColor);
   rect(960, 400, 1920, 100);
+  
+  handleColor = 20;
 
   // FPS
   int fps = leap.getFrameRate();
   fill(#00E310);
   text(fps + " fps", 20, 20);
   
-  
-  char send=0;
-  
+  command = STOP;
+
   for (Hand hand : leap.getHands ()) {
     
     PVector middleTip = hand.getMiddleFinger().getRawPositionOfJointTip();
@@ -51,16 +63,10 @@ void draw() {
     float handGrab = hand.getGrabStrength();
     
     if(handGrab>=0.9 && flag==1){
-      /*initPosY=handYPosition(middleTip);
-      initPosX=handXPosition(middleTip);
-      initPosYIndex=handYPosition(indexTip);
-      initPosYPinky=handYPosition(pinkyTip);*/
       initPosY = handYPosition(handCenter);;
-      handleColor = 255;
       flag = 0;
     }
     else if(handGrab<0.9 && flag==0){
-      handleColor = 20;
       flag = 1;
     }
     
@@ -69,37 +75,46 @@ void draw() {
     handleFinger(pinkyTip,"pinky");
     
     if (handGrab >= 0.9) {
+      handleColor = 255;
       difPosY = initPosY - handYPosition(handCenter);
-      /*difPosY=initPosY-handYPosition(middleTip);
-      difPosX=initPosX-handXPosition(middleTip);
-      difPosYIndex=initPosYIndex-handYPosition(indexTip);
-      difPosYPinky=initPosYPinky-handYPosition(pinkyTip);*/
-      text(difPosX + " x difference", 100, 40);
+      text(difPosY + " Y difference", 100, 40);
+      send = int(difPosY);   
       
-      if (difPosX<-50){
-        send = '3';
-      }
-      else if (difPosX>50){
-        send = '4';
-      }
-      else if(difPosY>10){ //tolerance of 50
-        send = '2';
-      }
-      else if (difPosY<-10){ //tolerance of 50
-        send = '1';
-      }
-      else{
-        send = '0';
-      }
-      
+    }
+
+    
+    if(difPosY<-threshold && handGrab >= 0.9){
+      command = FORWARD;
+    }
+    else if(difPosY>threshold && handGrab >= 0.9){
+      command = BACKWARD;
+    }
+    else{
+      command = STOP;
+    }
+    
+    hand.draw();
+  
   }
+  
+  if(command != oldCommand){
+    myPort.write(command);
+    oldCommand = command;
+    send = command;
+    count = 0;
+  }
+  /*if(count <=10){
+    count++;
+    send = command;
+  }*/
+
+   myPort.write(abs(send));
+   
+   //text(command + " :command", 100, 10);
+   text(send + " :command", 100, 70);
    rectMode(CENTER);
    fill(handleColor);
    rect(960, 400, 1920, 100);
-   myPort.write(send);
-   hand.draw();
-  
-  }
 }
 
 void handleFinger(PVector pos, String id) {
