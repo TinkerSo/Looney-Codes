@@ -26,7 +26,7 @@ int command = STOP;
 int oldCommand = command;
 int flagCommand = 0;
 
-float threshold = 5;
+float threshold = 15;
 
 Serial myPort;
 LeapMotion leap;
