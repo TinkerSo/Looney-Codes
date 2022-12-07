@@ -16,9 +16,9 @@ float difPosYPinky;
 int flag = 1;
 int handleColor = 20;
 
-int STOP = 200;
-int FORWARD = 201;
-int BACKWARD = 202;
+int STOP = 300;
+int FORWARD = 301;
+int BACKWARD = 302;
 int count = 0;
 
 int send= 0;

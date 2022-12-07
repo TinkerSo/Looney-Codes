@@ -7,6 +7,9 @@ Servo L_motor;
 Servo R_motor;
 
 int val = 0;
+int STOP = 200;
+int FORWARD = 201;
+int BACKWARD = 202;
 char command = 's';
 
 void setup() {
@@ -32,18 +35,16 @@ void loop() {
   }
   Serial.println(val);
 
-  if(val == 200){
+  if(val == STOP){
     command = 's';
     motorStop(L_motor);
     motorStop(R_motor);
     
   }
-  else if(val == 201){
+  else if(val == FORWARD){
     command = 'f';
-    motorControl(-100, L_motor);
-    motorControl(100, R_motor);
   }
-  else if(val == 202){
+  else if(val == BACKWARD){
     command = 'b';
   }
   
