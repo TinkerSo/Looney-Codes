@@ -1,38 +1,54 @@
 #include "PID.h"
 #include <Arduino.h>
 
-PID::PID(float P, float I, float D){
+PID::PID(double P, double I, double D) {
   kP = P;
   kI = I;
   kD = D;
+  prevError = 0;
+  totalError = 0;
 }
 
-void PID::updateTime(){
+void PID::updateTime() {
   currentTime = millis();
   elapsedTime = (double)(currentTime - previousTime);
 }
 
-int PID::motorSpeed(int setpoint, int value){
-  error = value;
-  cumError += error*elapsedTime;
-  rateError = (error-lastError)/elapsedTime;
+int PID::ComputMotorSpeed(int val) {
+  if (val < 200) {
+    totalError += val;
+    derivative = val - prevError;
+    Pvalue = kP * val;
+    Ivalue = kI * totalError;
+    Dvalue = kD * derivative;
+    if (Pvalue > 100) {
+      Pvalue = 100;
+    }
+    if (Ivalue > 100) {
+      Ivalue = 100;
+    }
+    if (Dvalue > 100) {
+      Dvalue = 100;
+    }
 
-  speed = kP*error + kI*cumError + kD*rateError;
 
-  lastError= error;
-  previousTime = currentTime;
+    speed = Pvalue + Ivalue + Dvalue;
 
-  return speed;
-}
+    if (speed > 100) {
+      speed = 100;
+    }
 
-void PID::setP(float val){
-  kP = val;
-}
+    return speed;
+  }
 
-void PID::setI(float val){
-  kI = val;
-}
+  void PID::setP(float val) {
+    kP = val;
+  }
 
-void PID::setD(float val){
-  kD = val;
-}
+  void PID::setI(float val) {
+    kI = val;
+  }
+
+  void PID::setD(float val) {
+    kD = val;
+  }
