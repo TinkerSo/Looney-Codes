@@ -1,4 +1,11 @@
 #include "motor.h"
+#include "PID.h"
+
+double kP = 0;
+double kI = 1;
+double kD = 0;
+
+PID PID_control(kP, kI, kD);
 
 motor::motor(){
   command = 's';
@@ -18,6 +25,7 @@ void motor::motorStop(Servo motor){
 }
 
 void motor::power(int val){
+  
   if(val == STOP){
     command = 's';
     motorStop(left_motor);

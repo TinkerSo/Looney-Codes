@@ -20,6 +20,7 @@ int STOP = 200;
 int FORWARD = 201;
 int BACKWARD = 202;
 int count = 0;
+int totalError;
 
 int send= 0;
 int command = STOP;
@@ -111,6 +112,13 @@ void draw() {
    myPort.write(abs(send));
    
    //text(command + " :command", 100, 10);
+   if(send<200){
+     totalError += abs(send);
+   }
+   else{
+     totalError = 0;
+   }
+   text(totalError + " :total", 100, 90);
    text(send + " :command", 100, 70);
    rectMode(CENTER);
    fill(handleColor);
