@@ -50,6 +50,7 @@ void setup() {
 void draw() {
   background(100);
   rectMode(CENTER);
+  textSize(12);
   fill(handleColor);
   rect(960, 400, 1920, 100);
   
@@ -63,6 +64,7 @@ void draw() {
   command = STOP;
 
   for (Hand hand : leap.getHands ()) {
+    
     
     PVector middleTip = hand.getMiddleFinger().getRawPositionOfJointTip();
     PVector indexTip = hand.getIndexFinger().getRawPositionOfJointTip();
@@ -89,16 +91,13 @@ void draw() {
     handleFinger(pinkyTip,"pinky");
     
     if (handGrab >= 0.9) {
-      handleColor = 255; 
-      size(400, 400); //ADDED THIS
-     textSize(128);
-       text("GRABBED", 40, 120); 
-      fill(0, 408, 612);// THORUGH HERE
-
       difPosY = initPosY - handYPosition(handCenter);
       //text(difPosY + " Y difference", 100, 40);
       send = int(difPosY);   
       yawdir = hand.getYaw() - initialyaw;
+
+      handleColor = 255; 
+      
       
     }
     
@@ -122,6 +121,7 @@ void draw() {
         command = RIGHTTURN;
       }
     }
+    
     
     hand.draw();
   
@@ -151,6 +151,7 @@ void draw() {
    else{
      totalError = 0;
    }
+   textSize(12);
    text(initialyaw + " : initial yaw", 100, 130);
    text(yawdir + " :yaw", 100, 110);
    text(totalError + " :total", 100, 90);
@@ -162,6 +163,12 @@ void draw() {
    rectMode(CENTER);
    fill(handleColor);
    rect(960, 400, 1920, 100);
+   
+   if(flag == 0){
+     textSize(60);
+     fill(0, 408, 612);
+     text("GRABBED", 960, 350); 
+   }
 }
 
 void handleFinger(PVector pos, String id) {
