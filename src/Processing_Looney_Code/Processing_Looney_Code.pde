@@ -57,6 +57,8 @@ void setup() {
 void draw() {
   background(60,74,80);
   
+  rotate(0);
+  
   handCount = 0;
   
   /*rectMode(CENTER);
@@ -135,7 +137,7 @@ void draw() {
       }
     }
     
-    
+    textSize(12);
     hand.draw();
   
   }
@@ -178,11 +180,14 @@ void draw() {
    if(send<200){
      rectMode(CENTER);
      fill(handleColor);
+     //rotate(HALF_PI/3);
+     //rotate(yawdir/100);
      rect(960, send*3+400, 1920, 100);
    }
    else{
      rectMode(CENTER);
      fill(handleColor);
+     //rotate(HALF_PI/3);
      rect(960, 400, 1920, 100);
    }
    
@@ -191,6 +196,7 @@ void draw() {
      fill(0, 408, 612);
      text("GRABBED", 900, 300); 
      if(send<200){
+       //rotate(yawdir/100);
        image(handGrab_pic, 780, send*3+300);
      }
      else{
@@ -213,6 +219,7 @@ void handleFinger(PVector pos, String id) {
 
   // ID
   fill(0);
+  textSize(12);
   text(id, x, y + 5);
   fill(#00E310);
   text("y: " + y, 100, 20);
