@@ -21,6 +21,7 @@ class PID {
     int target;
     int value;
     PID(double P, double I, double D);
+    PID(double P, double D);
     int ComputeMotorSpeed(int val);
     void updateTime();
     void setP(double val);

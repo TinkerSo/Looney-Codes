@@ -9,6 +9,14 @@ PID::PID(double P, double I, double D) {
   totalError = 0;
 }
 
+PID::PID(double P, double D) {
+  kP = P;
+  kI = 0;
+  kD = D;
+  prevError = 0;
+  totalError = 0;
+}
+
 void PID::updateTime() {
   currentTime = millis();
   elapsedTime = (double)(currentTime - previousTime);

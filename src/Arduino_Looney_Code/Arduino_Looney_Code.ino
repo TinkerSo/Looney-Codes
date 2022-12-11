@@ -1,8 +1,7 @@
 #include "motor.h"
 #include "PID.h"
 
-//PID pid(0.9,0.005,0.001);
-PID pid(0.9, 0.005, 0.001);
+PID pid(1.2, 0.002);  //PD
 
 int chassis_speed;
 
