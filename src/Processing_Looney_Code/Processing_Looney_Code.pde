@@ -122,7 +122,7 @@ void draw() {
   }
   
   if(command == LEFTTURN || command == RIGHTTURN){
-    send = abs(int(yawdir))+20;
+    send = abs(int(yawdir))*5;
   }
   
   if(command != oldCommand){
