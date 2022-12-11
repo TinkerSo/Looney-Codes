@@ -38,10 +38,12 @@ float threshold = 10;
 
 Serial myPort;
 LeapMotion leap;
+PImage photo;
 
 void setup() {
   size(1920, 800, OPENGL);
   leap = new LeapMotion(this);
+  photo = loadImage("logo.jpg");
   textAlign(CENTER);
   myPort = new Serial(this, "COM4", 9600);
   myPort.bufferUntil('n');
@@ -53,6 +55,7 @@ void draw() {
   textSize(12);
   fill(handleColor);
   rect(960, 400, 1920, 100);
+  image(photo, 400, 0);
   
   handleColor = 20;
 
@@ -168,17 +171,8 @@ void draw() {
      textSize(60);
      fill(0, 408, 612);
      text("GRABBED", 960, 350); 
-     PImage photo;
-
-void setup() {
-  size(400, 400);
-  photo = loadImage("image.jpg");
-}
-
-void draw() {
-  image(photo, 0, 0);
-}
    }
+   
 }
 
 void handleFinger(PVector pos, String id) {
