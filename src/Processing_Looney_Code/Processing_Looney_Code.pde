@@ -29,6 +29,8 @@ int RIGHTTURN = 204;
 int count = 0;
 int totalError;
 
+int countHand;
+
 int send= 0;
 int command = STOP;
 int oldCommand = command;
@@ -52,6 +54,7 @@ void draw() {
   rectMode(CENTER);
   fill(handleColor);
   rect(960, 400, 1920, 100);
+  countHand = 0;
   
   handleColor = 20;
 
@@ -63,7 +66,7 @@ void draw() {
   command = STOP;
 
   for (Hand hand : leap.getHands ()) {
-    
+    countHand++;
     PVector middleTip = hand.getMiddleFinger().getRawPositionOfJointTip();
     PVector indexTip = hand.getIndexFinger().getRawPositionOfJointTip();
     PVector pinkyTip = hand.getPinkyFinger().getRawPositionOfJointTip();
@@ -150,6 +153,7 @@ void draw() {
    text(totalError + " :total", 100, 90);
    text(command + " :command", 100, 70);
    text(send + " :sent", 100, 150);
+   text(countHand + " :# hands", 100, 170);
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
    rectMode(CENTER);
