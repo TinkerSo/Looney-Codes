@@ -89,11 +89,17 @@ void draw() {
     handleFinger(pinkyTip,"pinky");
     
     if (handGrab >= 0.9) {
-      handleColor = 255;
+      handleColor = 255; 
+      size(400, 400); //ADDED THIS
+     textSize(128);
+       text("GRABBED", 40, 120); 
+      fill(0, 408, 612);// THORUGH HERE
+
       difPosY = initPosY - handYPosition(handCenter);
       //text(difPosY + " Y difference", 100, 40);
       send = int(difPosY);   
       yawdir = hand.getYaw() - initialyaw;
+      
     }
     
     
@@ -150,6 +156,7 @@ void draw() {
    text(totalError + " :total", 100, 90);
    text(command + " :command", 100, 70);
    text(send + " :sent", 100, 150);
+   text(command + " :command", 100, 70);
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
    rectMode(CENTER);
