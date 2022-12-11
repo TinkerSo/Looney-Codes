@@ -13,6 +13,10 @@ float difPosY;
 float difPosX;
 float difPosYIndex;
 float difPosYPinky;
+float zPinky;
+float zMiddle;
+float zIndex;
+float zHand;
    // float directionX;
     //float directionY;
     float yawdir;
@@ -69,6 +73,12 @@ void draw() {
     PVector pinkyTip = hand.getPinkyFinger().getRawPositionOfJointTip();
     PVector handCenter = hand.getPosition();
     float handGrab = hand.getGrabStrength();
+    zPinky = handZPosition(pinkyTip);
+    zMiddle = handZPosition(middleTip);
+    zIndex = handZPosition(pinkyTip);
+    zHand = handZPosition(handCenter);
+    
+  
     //PVector palmDirection = hand.getRawDirection();
     //directionX = handXPosition(palmDirection);
     //directionY = handYPosition(palmDirection);
@@ -152,6 +162,9 @@ void draw() {
    text(send + " :sent", 100, 150);
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
+   text(zHand + " :Hand Z location", 100, 170);
+   
+
    rectMode(CENTER);
    fill(handleColor);
    rect(960, 400, 1920, 100);
