@@ -14,13 +14,14 @@ void PID::updateTime() {
   elapsedTime = (double)(currentTime - previousTime);
 }
 
-int PID::ComputMotorSpeed(int val) {
+int PID::ComputeMotorSpeed(int val) {
   if (val < 200) {
     totalError += val;
     derivative = val - prevError;
     Pvalue = kP * val;
     Ivalue = kI * totalError;
     Dvalue = kD * derivative;
+
     if (Pvalue > 100) {
       Pvalue = 100;
     }
@@ -32,23 +33,30 @@ int PID::ComputMotorSpeed(int val) {
     }
 
 
-    speed = Pvalue + Ivalue + Dvalue;
+    computed_speed = Pvalue + Ivalue + Dvalue;
 
-    if (speed > 100) {
-      speed = 100;
+    if (computed_speed > 100) {
+      computed_speed = 100;
     }
 
-    return speed;
-  }
+    prevError = val;
 
-  void PID::setP(float val) {
-    kP = val;
   }
+  else if(val>=200){
+    totalError = 0;
+    //computed_speed = 0;
+  }
+  return computed_speed;
+}
 
-  void PID::setI(float val) {
-    kI = val;
-  }
+void PID::setP(double val) {
+  kP = val;
+}
 
-  void PID::setD(float val) {
-    kD = val;
-  }
+void PID::setI(double val) {
+  kI = val;
+}
+
+void PID::setD(double val) {
+  kD = val;
+}

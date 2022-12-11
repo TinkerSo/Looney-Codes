@@ -1,16 +1,10 @@
 #include "motor.h"
 #include "PID.h"
 
-PID pid(0.9,0.005,0.001);
+//PID pid(0.9,0.005,0.001);
+PID pid(0.9, 0.005, 0.001);
 
-
-int totalError = 0;
-int derivative;
-int prevError = 0;
-int Pvalue;
-int Ivalue;
-int Dvalue;
-int speed;
+int chassis_speed;
 
 #define L_MOTOR_PIN 8
 #define R_MOTOR_PIN 12
@@ -33,38 +27,18 @@ void loop() {
     val = Serial.read();
   }
 
+
   if(val>=100 && val<200){
     val = 100;
   }
 
-  if(val<200){
-    totalError += val;
-    derivative = val - prevError;
-    Pvalue = kp*val;
-    Ivalue = ki*totalError;
-    Dvalue = kd*derivative;
-    if(Pvalue > 100){
-      Pvalue = 100;
-    }
-    if(Ivalue > 100){
-      Ivalue = 100;
-    }
-    if(Dvalue > 100){
-      Dvalue = 100;
-    }
-
+  chassis_speed = pid.ComputeMotorSpeed(val);
   
-    a=kpid.ComputMotorSpeed(val);
-    cout<<"motor speed is"<<a<<endl;
-     
-    
-    Serial.println(Ivalue);
-    chassis.power(speed);
-
-    prevError = val;
+  if(val<200){ 
+    chassis.power(chassis_speed);
   }
   else{
     chassis.power(val);
-    totalError = 0;
   }
-  
+
+}
