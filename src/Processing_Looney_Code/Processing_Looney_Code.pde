@@ -168,6 +168,16 @@ void draw() {
      textSize(60);
      fill(0, 408, 612);
      text("GRABBED", 960, 350); 
+     PImage photo;
+
+void setup() {
+  size(400, 400);
+  photo = loadImage("image.jpg");
+}
+
+void draw() {
+  image(photo, 0, 0);
+}
    }
 }
 
