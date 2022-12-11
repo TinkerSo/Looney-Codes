@@ -18,6 +18,7 @@ float difPosYPinky;
     float yawdir;
     float initialyaw;
     float thresholdyaw = 10;
+    
 int flag = 1;
 int handleColor = 20;
 
@@ -29,6 +30,8 @@ int RIGHTTURN = 204;
 int count = 0;
 int totalError;
 
+int handCount;
+
 int send= 0;
 int command = STOP;
 int oldCommand = command;
@@ -39,23 +42,30 @@ float threshold = 10;
 Serial myPort;
 LeapMotion leap;
 PImage photo;
+PImage handGrab_pic;
 
 void setup() {
-  size(1920, 800, OPENGL);
+  size(1920, 1000, OPENGL);
   leap = new LeapMotion(this);
   photo = loadImage("logo.jpg");
+  handGrab_pic = loadImage("grabbed_hand.png");
   textAlign(CENTER);
   myPort = new Serial(this, "COM4", 9600);
   myPort.bufferUntil('n');
 }
 
 void draw() {
-  background(100);
-  rectMode(CENTER);
+  background(60,74,80);
+  
+  handCount = 0;
+  
+  /*rectMode(CENTER);
   textSize(12);
   fill(handleColor);
-  rect(960, 400, 1920, 100);
-  image(photo, 400, 0);
+  rect(960, 400, 1920, 100);*/
+  
+  photo.resize(900, 600);
+  image(photo, 450, 400);
   
   handleColor = 20;
 
@@ -67,7 +77,7 @@ void draw() {
   command = STOP;
 
   for (Hand hand : leap.getHands ()) {
-    
+    handCount++;
     
     PVector middleTip = hand.getMiddleFinger().getRawPositionOfJointTip();
     PVector indexTip = hand.getIndexFinger().getRawPositionOfJointTip();
@@ -161,17 +171,33 @@ void draw() {
    text(command + " :command", 100, 70);
    text(send + " :sent", 100, 150);
    text(command + " :command", 100, 70);
+   text(handCount + " :hand count", 100, 170);
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
-   rectMode(CENTER);
-   fill(handleColor);
-   rect(960, 400, 1920, 100);
    
-   if(flag == 0){
+   if(send<200){
+     rectMode(CENTER);
+     fill(handleColor);
+     rect(960, send*3+400, 1920, 100);
+   }
+   else{
+     rectMode(CENTER);
+     fill(handleColor);
+     rect(960, 400, 1920, 100);
+   }
+   
+   if(flag == 0 && handCount == 1){
      textSize(60);
      fill(0, 408, 612);
-     text("GRABBED", 960, 350); 
+     text("GRABBED", 900, 300); 
+     if(send<200){
+       image(handGrab_pic, 780, send*3+300);
+     }
+     else{
+       image(handGrab_pic, 780, 300);
+     }
    }
+   
    
 }
 
