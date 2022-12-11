@@ -13,12 +13,19 @@ float difPosY;
 float difPosX;
 float difPosYIndex;
 float difPosYPinky;
+   // float directionX;
+    //float directionY;
+    float yawdir;
+    float initialyaw;
+    float thresholdyaw = 10;
 int flag = 1;
 int handleColor = 20;
 
 int STOP = 200;
 int FORWARD = 201;
 int BACKWARD = 202;
+int LEFTTURN = 203;
+int RIGHTTURN = 204;
 int count = 0;
 int totalError;
 
@@ -27,7 +34,7 @@ int command = STOP;
 int oldCommand = command;
 int flagCommand = 0;
 
-float threshold = 5;
+float threshold = 10;
 
 Serial myPort;
 LeapMotion leap;
@@ -62,9 +69,15 @@ void draw() {
     PVector pinkyTip = hand.getPinkyFinger().getRawPositionOfJointTip();
     PVector handCenter = hand.getPosition();
     float handGrab = hand.getGrabStrength();
+    //PVector palmDirection = hand.getRawDirection();
+    //directionX = handXPosition(palmDirection);
+    //directionY = handYPosition(palmDirection);
+    //yawdir = hand.getYaw();
+    
     
     if(handGrab>=0.9 && flag==1){
-      initPosY = handYPosition(handCenter);;
+      initPosY = handYPosition(handCenter);
+      initialyaw = hand.getYaw();
       flag = 0;
     }
     else if(handGrab<0.9 && flag==0){
@@ -78,11 +91,12 @@ void draw() {
     if (handGrab >= 0.9) {
       handleColor = 255;
       difPosY = initPosY - handYPosition(handCenter);
-      text(difPosY + " Y difference", 100, 40);
+      //text(difPosY + " Y difference", 100, 40);
       send = int(difPosY);   
-      
+      yawdir = hand.getYaw() - initialyaw;
     }
-
+    
+    
     
     if(difPosY<-threshold && handGrab >= 0.9){
       command = FORWARD;
@@ -94,8 +108,21 @@ void draw() {
       command = STOP;
     }
     
+    if(abs(yawdir)>thresholdyaw &&  handGrab>= 0.9){
+      if (yawdir < 0 ){
+        command = LEFTTURN;
+      }
+      else{
+        command = RIGHTTURN;
+      }
+    }
+    
     hand.draw();
   
+  }
+  
+  if(command == LEFTTURN || command == RIGHTTURN){
+    send = abs(int(yawdir))+20;
   }
   
   if(command != oldCommand){
@@ -118,8 +145,13 @@ void draw() {
    else{
      totalError = 0;
    }
+   text(initialyaw + " : initial yaw", 100, 130);
+   text(yawdir + " :yaw", 100, 110);
    text(totalError + " :total", 100, 90);
-   text(send + " :command", 100, 70);
+   text(command + " :command", 100, 70);
+   text(send + " :sent", 100, 150);
+   //text(directionX +" :xdirection", 100, 50);
+   //text(directionY +" :ydirection", 100, 30);
    rectMode(CENTER);
    fill(handleColor);
    rect(960, 400, 1920, 100);

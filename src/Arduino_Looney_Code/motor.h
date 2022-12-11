@@ -7,7 +7,9 @@
 enum commandStates{
   STOP = 200,
   FORWARD = 201,
-  BACKWARD = 202
+  BACKWARD = 202,
+  LEFTTURN = 203,
+  RIGHTTURN = 204
 };
 
 class motor{
