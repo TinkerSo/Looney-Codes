@@ -1,9 +1,8 @@
 #include "motor.h"
 #include "PID.h"
 
-double kp = 0.9;
-double ki = 0.005;
-double kd = 0.001;
+PID pid(0.9,0.005,0.001);
+
 
 int totalError = 0;
 int derivative;
@@ -55,11 +54,9 @@ void loop() {
     }
 
   
-    speed = Pvalue+Ivalue+Dvalue;
-
-    if(speed>100){
-      speed = 100;
-    }
+    a=kpid.ComputMotorSpeed(val);
+    cout<<"motor speed is"<<a<<endl;
+     
     
     Serial.println(Ivalue);
     chassis.power(speed);
@@ -71,4 +68,3 @@ void loop() {
     totalError = 0;
   }
   
-}
