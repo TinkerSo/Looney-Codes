@@ -178,34 +178,14 @@ void draw() {
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
    
-   if(send<200){
-     rectMode(CENTER);
-     fill(handleColor);
-     //rotate(HALF_PI/3);
-     //rotate(yawdir/100);
-     rect(960, send*3+400, 1920, 100);
-   }
-   else{
-     rectMode(CENTER);
-     fill(handleColor);
-     //rotate(HALF_PI/3);
-     rect(960, 400, 1920, 100);
-   }
-   
-   if(flag == 0 && handCount == 1){
+    if(flag == 0 && handCount == 1){
      textSize(60);
      fill(0, 408, 612);
+     textAlign(CENTER);
      text("GRABBED", 900, 300); 
-     if(send<200){
-       //rotate(yawdir/100);
-       image(handGrab_pic, 780, send*3+300);
-     }
-     else{
-       image(handGrab_pic, 780, 300);
-     }
-   }
-   
-   if(command == STOP){
+    }
+    
+     if(command == STOP){
      textSize(30);
      fill(0, 408, 612);
      text("STOPPED", 900, 100); 
@@ -231,11 +211,38 @@ void draw() {
      text("TURNING RIGHT", 900, 100); 
    }
    
+   if(send<200){
+     rectMode(CENTER);
+     fill(handleColor);
+     //rotate(HALF_PI/3);
+     //rotate(yawdir/100);
+     if(command == LEFTTURN || command == RIGHTTURN){
+       rotate(yawdir/200);
+     }
+     else{
+       rectMode(CENTER);
+     }
+     rect(960, send*3+400, 1920, 100);
+   }
+   else{
+     rectMode(CENTER);
+     fill(handleColor);
+     rotate(0);
+     //rotateZ(HALF_PI/3);
+     rect(960, 400, 1920, 100);
+   }
    
-   
-   
-   
+   if(flag == 0 && handCount == 1){
+     if(send<200){
+       //rotate(yawdir/100);
+       image(handGrab_pic, 780, send*3+300);
+     }
+     else{
+       image(handGrab_pic, 780, 300);
+     }
+   }
 }
+
 
 void handleFinger(PVector pos, String id) {
 
