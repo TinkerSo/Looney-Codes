@@ -72,6 +72,7 @@ void draw() {
   handleColor = 20;
 
   // FPS
+  textSize(12);
   int fps = leap.getFrameRate();
   fill(#00E310);
   text(fps + " fps", 20, 20);
@@ -203,6 +204,35 @@ void draw() {
        image(handGrab_pic, 780, 300);
      }
    }
+   
+   if(command == STOP){
+     textSize(30);
+     fill(0, 408, 612);
+     text("STOPPED", 900, 100); 
+   }
+   else if(command == FORWARD){
+     textSize(30);
+     fill(0, 408, 612);
+     text("MOVING FORWARD", 900, 100); 
+   }
+   else if(command == BACKWARD){
+     textSize(30);
+     fill(0, 408, 612);
+     text("MOVING BACKWARD", 900, 100); 
+   }
+   else if(command == LEFTTURN){
+     textSize(30);
+     fill(0, 408, 612);
+     text("TURNING LEFT", 900, 100); 
+   }
+   else if(command == RIGHTTURN){
+     textSize(30);
+     fill(0, 408, 612);
+     text("TURNING RIGHT", 900, 100); 
+   }
+   
+   
+   
    
    
 }
