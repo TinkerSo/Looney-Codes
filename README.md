@@ -24,4 +24,4 @@ Hand Tracking Modular Motorized Wheel: May the force be with you
 
 
 ## Dependency
-- Need to download [LeapMotion](https://developer.leapmotion.com/releases/leap-motion-orion-410-99fe5-crpgl)
+- Download [LeapMotion](https://developer.leapmotion.com/releases/leap-motion-orion-410-99fe5-crpgl)
