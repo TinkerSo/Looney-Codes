@@ -8,7 +8,7 @@ Contactlass hand tracking motorized cart: May the force be with you
 ## Team Members
 - Beren Donmez
 - Jiahe Niu
-- Christian So
+- Christian So (cbso@bu.edu)
 
 ### Mentor
 - Steven So
