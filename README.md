@@ -14,3 +14,10 @@ Hand Tracking Modular Motorized Wheel: May the force be with you
 - src/
   - Arduino_Looney_Code
   - Processing_Looney_Code
+
+## Hardware
+- LeapMotion Controller
+- Arduino
+- 393 Vex Motors
+
+## Software 
