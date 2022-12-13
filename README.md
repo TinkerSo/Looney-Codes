@@ -10,9 +10,6 @@ Contactlass hand tracking motorized cart: May the force be with you
 - Jiahe Niu
 - Christian So (cbso@bu.edu)
 
-### Mentor
-- Steven So
-
 ## Contents
 - src/
   - Arduino_Looney_Code
