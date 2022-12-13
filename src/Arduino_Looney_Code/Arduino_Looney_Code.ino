@@ -13,7 +13,7 @@ int val = 0;
 motor chassis;
 
 void setup() {
-  // put your setup code here, to run once:
+  // setup code which runs once
   chassis.set_pins(R_MOTOR_PIN, L_MOTOR_PIN);
   Serial.begin(9600);
 }
@@ -21,8 +21,8 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  if (Serial.available() > 0) { // Allow for Serial to connect before reading
+  // main code here that runs repeatedly:
+  if (Serial.available() > 0) { 
     val = Serial.read();
   }
 
