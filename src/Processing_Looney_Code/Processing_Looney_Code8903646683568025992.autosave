@@ -1,10 +1,9 @@
 import de.voidplus.leapmotion.*;
 import processing.serial.*;
-//comments
 
 float INTERACTION_SPACE_WIDTH = 200; // left-right from user
 float INTERACTION_SPACE_DEPTH = 150; // away-and-toward user
-float FINGER_DOT = 30; 
+float FINGER_DOT = 30;
 
 float initPosY;
 float initPosX;
@@ -14,15 +13,14 @@ float difPosY;
 float difPosX;
 float difPosYIndex;
 float difPosYPinky;
-   // float directionX;
-    //float directionY;
-    float yawdir;
+ 
+    float yawdir; //yaw is for the hand angle
     float initialyaw;
     float thresholdyaw = 10;
     
 int flag = 1;
 int handleColor = 20;
-
+//below are the commands that we send to arduino laterrr
 int STOP = 200;
 int FORWARD = 201;
 int BACKWARD = 202;
@@ -87,11 +85,9 @@ void draw() {
     PVector indexTip = hand.getIndexFinger().getRawPositionOfJointTip();
     PVector pinkyTip = hand.getPinkyFinger().getRawPositionOfJointTip();
     PVector handCenter = hand.getPosition();
+    //PVector is class with x, y, z coordinates
     float handGrab = hand.getGrabStrength();
-    //PVector palmDirection = hand.getRawDirection();
-    //directionX = handXPosition(palmDirection);
-    //directionY = handYPosition(palmDirection);
-    //yawdir = hand.getYaw();
+   
     
     
     if(handGrab>=0.9 && flag==1){
@@ -107,6 +103,8 @@ void draw() {
     handleFinger(indexTip,"indx");
     handleFinger(pinkyTip,"pinky");
     
+    //when hand is in grabbed position it is 1
+    //therefore this later part of the code is only run when hadn is grabbed
     if (handGrab >= 0.9) {
       difPosY = initPosY - handYPosition(handCenter);
       //text(difPosY + " Y difference", 100, 40);
