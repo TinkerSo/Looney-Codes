@@ -1,7 +1,7 @@
 # Looney-Codes
 Contactlass hand tracking motorized cart: May the force be with you
 - [Demo Video](https://drive.google.com/file/d/1KN_9ofICUXL42smD-FLyvRaEv8-JSHKU/view)
-- [Timeline](https://docs.google.com/spreadsheets/d/1zjltLZRq7k2SDtg1kTdfaO2rv2rXiqlv2vjbMqw8aOY/edit?usp=sharing)
+- [Gantt Chart Timeline](https://docs.google.com/spreadsheets/d/1zjltLZRq7k2SDtg1kTdfaO2rv2rXiqlv2vjbMqw8aOY/edit?usp=sharing)
 
 ## Team Members
 - Beren Donmez
