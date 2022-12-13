@@ -8,7 +8,7 @@ PID::PID(double P, double I, double D) {
   prevError = 0;
   totalError = 0;
 }
-
+//overloaded because we want to use kP and kD still
 PID::PID(double P, double D) {
   kP = P;
   kI = 0;
