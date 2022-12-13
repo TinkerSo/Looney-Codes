@@ -87,11 +87,9 @@ void draw() {
     PVector indexTip = hand.getIndexFinger().getRawPositionOfJointTip();
     PVector pinkyTip = hand.getPinkyFinger().getRawPositionOfJointTip();
     PVector handCenter = hand.getPosition();
+    //Pvector is a class that contains x,y,z coordinates
     float handGrab = hand.getGrabStrength();
-    //PVector palmDirection = hand.getRawDirection();
-    //directionX = handXPosition(palmDirection);
-    //directionY = handYPosition(palmDirection);
-    //yawdir = hand.getYaw();
+    
     
     
     if(handGrab>=0.9 && flag==1){
@@ -176,6 +174,8 @@ void draw() {
    text(send + " :sent", 100, 150);
    text(command + " :command", 100, 70);
    text(handCount + " :hand count", 100, 170);
+   //the second numbers are (x,y) coordinateson the grid for where the text should show up
+   
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
    
