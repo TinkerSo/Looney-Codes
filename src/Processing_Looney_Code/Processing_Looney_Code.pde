@@ -14,15 +14,15 @@ float difPosY;
 float difPosX;
 float difPosYIndex;
 float difPosYPinky;
-   // float directionX;
-    //float directionY;
-    float yawdir;
+  
+    float yawdir; //yaw is angle 
     float initialyaw;
     float thresholdyaw = 10;
     
 int flag = 1;
 int handleColor = 20;
 
+//these are the commands that will be sent to arduino
 int STOP = 200;
 int FORWARD = 201;
 int BACKWARD = 202;
