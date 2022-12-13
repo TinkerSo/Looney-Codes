@@ -180,6 +180,7 @@ void draw() {
    //text(directionX +" :xdirection", 100, 50);
    //text(directionY +" :ydirection", 100, 30);
    
+   //this shows a big GRABBED on top of the handle bar
     if(flag == 0 && handCount == 1){
      textSize(60);
      fill(0, 408, 612);
