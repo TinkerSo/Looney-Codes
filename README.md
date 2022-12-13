@@ -6,3 +6,6 @@ Hand Tracking Modular Motorized Wheel: May the force be with you
 - Beren Donmez
 - Jiahe Niu
 - Christian So
+
+### Mentor
+- Steven So
