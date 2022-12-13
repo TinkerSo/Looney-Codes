@@ -50,12 +50,12 @@ void motor::power(int val) {
     motorStop(right_motor);
   }
   else if (command == 'b') {
-    motorControl(-val, left_motor);
+    motorControl(-val, left_motor); 
     motorControl(val, right_motor);
   }
   else if (command == 'f') {
-    motorControl(val, left_motor);
-    motorControl(-val, right_motor);
+    motorControl(val, left_motor); // motors are screwed onto the chassis in opposite directions
+    motorControl(-val, right_motor); // speed is opposite of speed in other motor so that chassis goes in one direction
   }
   else if (command == 'l') {
     motorControl(-val, left_motor);
