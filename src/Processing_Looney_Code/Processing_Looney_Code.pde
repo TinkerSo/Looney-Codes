@@ -91,7 +91,8 @@ void draw() {
     float handGrab = hand.getGrabStrength();
     
     
-    
+    //code below runs only when grabbed hand is detected
+    // when hand is fulyl grabbed the value is 1 
     if(handGrab>=0.9 && flag==1){
       initPosY = handYPosition(handCenter);
       initialyaw = hand.getYaw();
@@ -117,7 +118,7 @@ void draw() {
     }
     
     
-    
+    //comparing the difference to a threshold of 10 and only when hand is grabbed
     if(difPosY<-threshold && handGrab >= 0.9){
       command = FORWARD;
     }
@@ -127,7 +128,7 @@ void draw() {
     else{
       command = STOP;
     }
-    
+      //comparing the difference to a yaw threshold of 10 and only when hand is grabbed
     if(abs(yawdir)>thresholdyaw &&  handGrab>= 0.9){
       if (yawdir < 0 ){
         command = LEFTTURN;
