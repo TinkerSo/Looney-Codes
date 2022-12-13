@@ -6,7 +6,7 @@ Contactlass hand tracking motorized cart: May the force be with you
 - [Gantt Chart Timeline](https://docs.google.com/spreadsheets/d/1zjltLZRq7k2SDtg1kTdfaO2rv2rXiqlv2vjbMqw8aOY/edit?usp=sharing)
 
 ## Team Members
-- Beren Donmez
+- Beren Donmez(bydonmez@bu.edu)
 - Jiahe Niu
 - Christian So (cbso@bu.edu)
 
