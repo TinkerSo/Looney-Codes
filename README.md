@@ -17,11 +17,12 @@ Hand Tracking Modular Motorized Wheel: May the force be with you
 
 ## Hardware
 - LeapMotion Controller
-- Arduino
+- Arduino Uno PC
 - 393 Vex Motors
 
 ## Software 
-
+- Arduino IDE
+- Processing 3
 
 ## Dependency
 - Download [LeapMotion](https://developer.leapmotion.com/releases/leap-motion-orion-410-99fe5-crpgl)
