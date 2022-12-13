@@ -1,5 +1,5 @@
 # Looney-Codes
-Hand Tracking Modular Motorized Wheel: May the force be with you
+Contactlass hand tracking motorized cart: May the force be with you
 - [Demo Video](https://drive.google.com/file/d/1KN_9ofICUXL42smD-FLyvRaEv8-JSHKU/view)
 
 ## Team Members
