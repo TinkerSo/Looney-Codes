@@ -21,3 +21,7 @@ Hand Tracking Modular Motorized Wheel: May the force be with you
 - 393 Vex Motors
 
 ## Software 
+
+
+## Dependency
+- Need to download [LeapMotion](https://developer.leapmotion.com/releases/leap-motion-orion-410-99fe5-crpgl)
