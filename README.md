@@ -13,8 +13,9 @@ Contactlass hand tracking motorized cart: May the force be with you
 ## Contents
 - src/
   - Arduino_Looney_Code
-    - PID class
-    - Motor class
+    - PID class: Propotional Inegral Derivative Control. This class smoothes out the movement of the chassis. It allows the system to react to sudden hand movement and stabalize its behavior.
+    - Motor class: Using the command received from the Processing Code, the direction of the motors are determined and changed. Pulse width modulation (PWM) was mapped to Servo (an object from imported library) in order to control the motors. 
+    - 
   - Processing_Looney_Code
 - doc/
   - Gantt Chart
