@@ -7,13 +7,20 @@ Contactlass hand tracking motorized cart: May the force be with you
 
 ## Team Members
 - Beren Donmez(bydonmez@bu.edu)
-- Jiahe Niu
+- Jiahe Niu (jniu@bu.edu)
 - Christian So (cbso@bu.edu)
 
 ## Contents
 - src/
   - Arduino_Looney_Code
+    - PID class
+    - Motor class
   - Processing_Looney_Code
+- doc/
+  - Gantt Chart
+  - Project Documentation
+  - Project Architecture
+  - Statement of Work
 
 ## Hardware
 - LeapMotion Controller
